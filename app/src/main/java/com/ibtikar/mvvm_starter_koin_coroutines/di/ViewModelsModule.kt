@@ -1,5 +1,7 @@
 package com.ibtikar.mvvm_starter_koin_coroutines.di
 
+import com.ibtikar.mvvm_starter_koin_coroutines.ui.home.HomeViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -9,8 +11,8 @@ import org.koin.dsl.module
  */
 
 val viewModelModule = module {
-//    viewModel {
-//        SearchProductsViewModel(get(), get())
-//    }
+    viewModel {
+        HomeViewModel(get(), get())
+    }
 
 }

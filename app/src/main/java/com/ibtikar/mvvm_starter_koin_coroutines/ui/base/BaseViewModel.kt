@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ibtikar.mvvm_starter_koin_coroutines.ApplicationRunTimeException
 import com.ibtikar.mvvm_starter_koin_coroutines.utils.coroutines.ContextProviders
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -15,14 +16,18 @@ abstract class BaseViewModel(private val contextProvider: ContextProviders) : Vi
 
     val state: LiveData<ViewState> = internalState
 
-    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        internalState.value = ViewState.Error(throwable.message)
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+        internalState.value = ViewState.Error(exception as ApplicationRunTimeException)
     }
 
-    fun launchBlock(block: suspend CoroutineScope.() -> Unit) {
-        internalState.value = ViewState.Loading
+    fun launchSuspendingBlock(
+        displayLoader: Boolean = true,
+        block: suspend CoroutineScope.() -> Unit
+    ) {
+        internalState.value = ViewState.Loading(displayLoader)
         viewModelScope.launch(contextProvider.Main + coroutineExceptionHandler) {
             block.invoke(this)
         }
     }
+
 }

@@ -68,7 +68,9 @@ dependencies {
     implementation(Libs.imageLibrary)
     implementation(Libs.cardView)
     implementation(Libs.loadingView)
-    
+    implementation(Libs.navigation)
+    implementation(Libs.navigationFragment)
+
     //coroutines
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)
@@ -87,6 +89,7 @@ dependencies {
     implementation(Libs.okhttp)
     implementation(Libs.gson)
     implementation("androidx.room:room-runtime:2.2.5")
+    implementation(Libs.gson)
 
     //test
     testImplementation(TestLibs.junit)

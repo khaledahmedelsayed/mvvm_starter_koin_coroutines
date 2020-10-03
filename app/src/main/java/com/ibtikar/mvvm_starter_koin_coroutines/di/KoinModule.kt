@@ -4,6 +4,7 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.ibtikar.mvvm_starter_koin_coroutines.BuildConfig
+import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.apis.Covid19Api
 import com.ibtikar.mvvm_starter_koin_coroutines.utils.coroutines.ContextProviders
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -23,10 +24,10 @@ val contextProviderModule = module {
 }
 
 val apiModule = module {
-//    fun provideUseApi(retrofit: Retrofit): ApiService {
-//        return retrofit.create(ApiService::class.java)
-//    }
-//    single { provideUseApi(get()) }
+    fun provideUseApi(retrofit: Retrofit): Covid19Api {
+        return retrofit.create(Covid19Api::class.java)
+    }
+    single { provideUseApi(get()) }
 }
 
 val retrofitModule = module {

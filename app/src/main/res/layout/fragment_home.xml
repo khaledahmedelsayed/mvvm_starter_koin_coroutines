@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="globalSummaryNumbers"
+            type="com.ibtikar.mvvm_starter_koin_coroutines.data.entities.summary.NumbersSummary" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_covid19">
+
+        <TextView
+            android:id="@+id/confirmedTotalTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="36dp"
+            android:text="Confirmed :"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/newCasesTv" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Global Cases"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/newCasesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="70dp"
+            android:text="New"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/totalCasesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="36dp"
+            android:text="Total"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/confirmedNewTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="30dp"
+            android:text="Confirmed :"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newCasesTv" />
+
+        <TextView
+            android:id="@+id/deathsNewTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="30dp"
+            android:text="Deaths :"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmedNewTv" />
+
+        <TextView
+            android:id="@+id/deathsNewValueTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{String.valueOf(globalSummaryNumbers.newDeaths)}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/deathsNewTv"
+            app:layout_constraintStart_toEndOf="@id/confirmedNewTv"
+            app:layout_constraintTop_toBottomOf="@id/newCasesTv" />
+
+        <TextView
+            android:id="@+id/confirmedTotalValueTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{String.valueOf(globalSummaryNumbers.totalConfirmed)}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/confirmedTotalTv"
+            app:layout_constraintStart_toEndOf="@id/confirmedTotalTv"
+            app:layout_constraintTop_toBottomOf="@id/totalCasesTv" />
+
+        <TextView
+            android:id="@+id/deathsTotalValueTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{String.valueOf(globalSummaryNumbers.totalDeaths)}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/deathsTotalTv"
+            app:layout_constraintStart_toEndOf="@id/deathsTotalTv"
+            app:layout_constraintTop_toBottomOf="@id/totalCasesTv" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Browse countries"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            app:cornerRadius="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deathsTotalTv"
+            app:strokeColor="@color/colorPrimary"
+
+            />
+
+        <TextView
+            android:id="@+id/deathsTotalTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Deaths :"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/confirmedTotalTv" />
+
+        <TextView
+            android:id="@+id/confirmedNewValueTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{String.valueOf(globalSummaryNumbers.newConfirmed)}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/confirmedNewTv"
+            app:layout_constraintStart_toEndOf="@id/confirmedNewTv"
+            app:layout_constraintTop_toBottomOf="@id/newCasesTv" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.54" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

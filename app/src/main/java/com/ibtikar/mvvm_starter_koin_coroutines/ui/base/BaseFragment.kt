@@ -10,10 +10,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.loadingview.LoadingDialog
+import com.ibtikar.mvvm_starter_koin_coroutines.ApplicationRunTimeException
 
 abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
     protected abstract val viewModel: VM
+
+    protected lateinit var binding: T
 
     private lateinit var loadingDialog: LoadingDialog
 
@@ -24,7 +27,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: T = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, getLayoutId(), container, false
         )
         return binding.root
@@ -38,15 +41,15 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(
         }
 
         setup()
-        viewModel.state.observe(this, Observer { baseRender(it) })
+        viewModel.state.observe(viewLifecycleOwner, Observer { baseRender(it) })
     }
 
     abstract fun setup()
 
     private fun baseRender(state: ViewState) {
         when (state) {
-            is ViewState.Loading -> showLoading()
-            is ViewState.Error -> showError(state.error)
+            is ViewState.Loading -> showLoading(state.displayLoading)
+            is ViewState.Error -> showError(state.applicationRunTimeException)
             else -> {
                 hideLoading()
                 render(state)
@@ -57,8 +60,9 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(
     abstract fun render(state: ViewState)
 
     // not private for the sake of overriding in case of custom implementation for specific screens
-    fun showLoading() {
-        loadingDialog.show()
+    fun showLoading(displayLoading: Boolean) {
+        if (displayLoading)
+            loadingDialog.show()
     }
 
     // not private for the sake of overriding in case of custom implementation for specific screens
@@ -66,8 +70,9 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(
         loadingDialog.hide()
     }
 
-    fun showError(errorModel: String?) {
+    fun showError(applicationRunTimeExceptionModel: ApplicationRunTimeException?) {
         hideLoading()
-        Toast.makeText(context, errorModel, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, applicationRunTimeExceptionModel?.errorMessage, Toast.LENGTH_SHORT)
+            .show()
     }
 }

@@ -1,4 +1,4 @@
-package com.ibtikar.mvvm_starter_koin_coroutinesl.utils.coroutines
+package com.ibtikar.mvvm_starter_koin_coroutines.utils.coroutines
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

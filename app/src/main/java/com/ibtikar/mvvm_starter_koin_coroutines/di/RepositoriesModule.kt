@@ -1,5 +1,6 @@
 package com.ibtikar.mvvm_starter_koin_coroutines.di
 
+import com.ibtikar.mvvm_starter_koin_coroutines.ui.home.HomeRepository
 import org.koin.dsl.module
 
 /**
@@ -10,10 +11,10 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
     single {
-//        SearchProductsRepository(
-//            get(),
-//            get()
-//        )
+        HomeRepository(
+            get(),
+            get()
+        )
     }
 
 }
