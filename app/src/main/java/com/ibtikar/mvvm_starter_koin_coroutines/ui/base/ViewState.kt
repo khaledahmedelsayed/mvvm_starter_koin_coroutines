@@ -6,7 +6,7 @@ package com.ibtikar.mvvm_starter_koin_coroutines.ui.base
  * Github : https://github.com/mhemdan
  */
 abstract class ViewState {
-    data class Loading(val displayLoading: Boolean) : ViewState()
+    data class Loading(val displayLoading: Boolean = true) : ViewState()
     data class Error(val applicationRunTimeException: com.ibtikar.mvvm_starter_koin_coroutines.ApplicationRunTimeException) :
         ViewState()
 

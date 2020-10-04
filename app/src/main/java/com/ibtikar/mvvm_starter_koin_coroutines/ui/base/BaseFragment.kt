@@ -57,7 +57,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(
         }
     }
 
-    abstract fun render(state: ViewState)
+    abstract fun render(currentState: ViewState)
 
     // not private for the sake of overriding in case of custom implementation for specific screens
     fun showLoading(displayLoading: Boolean) {

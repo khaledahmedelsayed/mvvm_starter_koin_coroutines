@@ -70,6 +70,7 @@ dependencies {
     implementation(Libs.loadingView)
     implementation(Libs.navigation)
     implementation(Libs.navigationFragment)
+    implementation(Libs.paging)
 
     //coroutines
     implementation(Libs.coroutinesCore)
@@ -89,7 +90,7 @@ dependencies {
     implementation(Libs.okhttp)
     implementation(Libs.gson)
     implementation("androidx.room:room-runtime:2.2.5")
-    implementation(Libs.gson)
+    implementation(Libs.glide)
 
     //test
     testImplementation(TestLibs.junit)

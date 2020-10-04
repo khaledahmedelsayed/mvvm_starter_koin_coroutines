@@ -21,8 +21,7 @@ abstract class BaseRepository(private val contextProviders: ContextProviders) {
                     )
 
                 // Make api call and handle its response
-                val response = block()
-                return@withContext handleResponse(response)
+                return@withContext handleResponse(block())
 
             } catch (exception: Throwable) {
                 if (exception is ApplicationRunTimeException)

@@ -3,11 +3,11 @@ package com.ibtikar.mvvm_starter_koin_coroutines.data.entities.summary
 import com.google.gson.annotations.SerializedName
 
 data class SummaryResponse(
-    @SerializedName("Global") val globalNumbersSummary: NumbersSummary? = null,
-    @SerializedName("Countries") val countriesSummary: Array<CountrySummary>? = null
+    @SerializedName("Global") val globalNumbersSummary: GlobalNumbersSummary? = null,
+    @SerializedName("Countries") val countriesNumbersSummary: ArrayList<CountryNumbersSummary>? = null
 )
 
-data class NumbersSummary(
+data class GlobalNumbersSummary(
     @SerializedName("NewConfirmed") val newConfirmed: Int = 0,
     @SerializedName("NewDeaths") val newDeaths: Int = 0,
     @SerializedName("NewRecovered") val newRecovered: Int = 0,
@@ -16,8 +16,10 @@ data class NumbersSummary(
     @SerializedName("TotalRecovered") val totalRecovered: Int = 0
 )
 
-data class CountrySummary(
+data class CountryNumbersSummary(
     @SerializedName("Country") val countryName: String? = null,
+    @SerializedName("CountryCode") val countryCode: String? = null,
+    @SerializedName("NewConfirmed") val newConfirmed: Int = 0,
     @SerializedName("NewDeaths") val newDeaths: Int = 0,
     @SerializedName("NewRecovered") val newRecovered: Int = 0,
     @SerializedName("TotalConfirmed") val totalConfirmed: Int = 0,
