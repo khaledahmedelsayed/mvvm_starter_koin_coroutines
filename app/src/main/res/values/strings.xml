@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MVVM_State_Starter</string>
+    <string name="error">Error</string>
+    <string name="internet_connection_error">Please check your internet connection</string>
+</resources>
