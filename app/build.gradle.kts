@@ -143,7 +143,6 @@ dependencies {
     implementation(Libs.prettyLogger)
     debugImplementation(Libs.leakCanary)
 
-
 // Tests
     testImplementation(TestLibs.Unit.junit5)
     testImplementation(TestLibs.Unit.junit5KotlinExt)

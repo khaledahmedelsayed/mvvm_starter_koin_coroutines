@@ -3,8 +3,8 @@ package com.khaledahmedelsayed.mvvmwithstatestarter.data.repositories
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.khaledahmedelsayed.mvvmwithstatestarter.common.ApplicationRunTimeException
-import com.khaledahmedelsayed.mvvmwithstatestarter.common.helpers.ContextProviders
 import com.khaledahmedelsayed.mvvmwithstatestarter.common.Utils
+import com.khaledahmedelsayed.mvvmwithstatestarter.common.helpers.ContextProviders
 import com.khaledahmedelsayed.mvvmwithstatestarter.common.types.ErrorType
 import com.khaledahmedelsayed.mvvmwithstatestarter.data.local.SharedPreferencesUtils
 import com.khaledahmedelsayed.mvvmwithstatestarter.data.remote.responses.base.ApiBaseResponse
@@ -21,7 +21,7 @@ open class BaseRepository(
     private val contextProviders: ContextProviders,
     private val sharedPrefs: SharedPreferencesUtils? = null,
 
-    ) : KoinComponent {
+) : KoinComponent {
     private val gson: Gson by inject()
 
     // https://arturbosch.github.io/detekt/exceptions.html#toogenericexceptioncaught

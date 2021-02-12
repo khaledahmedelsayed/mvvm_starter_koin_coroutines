@@ -209,4 +209,3 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
 
     private fun <ViewModel : Any> getViewModelClass() = getGenericTypeKClass<ViewModel>(1)
 }
-

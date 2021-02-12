@@ -44,8 +44,8 @@ object Utils : KoinComponent {
                 Timber.tag("ApplicationError")
                     .w(
                         "------ Application Error ------ \nType -> ${caughtException.errorType} \nContent -> ${
-                            caughtException.getContentFormatted()
-                                .toStringOrNull() ?: "No content found."
+                        caughtException.getContentFormatted()
+                            .toStringOrNull() ?: "No content found."
                         } \nError message: ${caughtException.errorMessage.toStringOrNull() ?: "No message found."}"
                     )
             } else {
