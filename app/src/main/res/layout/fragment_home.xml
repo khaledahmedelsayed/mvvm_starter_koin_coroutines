@@ -7,7 +7,7 @@
 
         <variable
             name="globalSummaryNumbers"
-            type="com.ibtikar.mvvm_starter_koin_coroutines.data.entities.summary.GlobalNumbersSummary" />
+            type="com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.GlobalNumbersSummary" />
     </data>
 
     <androidx.core.widget.NestedScrollView

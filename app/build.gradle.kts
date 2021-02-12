@@ -1,10 +1,17 @@
-import org.jetbrains.kotlin.config.KotlinCompilerVersion
+import Config.KEY_ALIAS
+import Config.KEY_PASSWORD
+import Config.STORE_FILE
+import Config.STORE_PASSWORD
 
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt")
+
+    id("kotlin-parcelize")
+    id("io.gitlab.arturbosch.detekt")
+    id("org.jlleitschuh.gradle.ktlint")
+//    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -14,7 +21,7 @@ android {
     compileSdkVersion(Apps.compileSdk)
 
     defaultConfig {
-        applicationId = "com.ibtikar.mvvm_starter_koin_coroutines"
+        applicationId = "com.mvvm.state.starter"
         minSdkVersion(Apps.minSdk)
         targetSdkVersion(Apps.targetSdk)
         versionCode = Apps.versionCode
@@ -22,17 +29,50 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = KEY_ALIAS
+            keyPassword = KEY_PASSWORD
+            storeFile = File(rootProject.projectDir.absolutePath + STORE_FILE)
+            storePassword = STORE_PASSWORD
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
+    flavorDimensions("default") // A flavorDimension is a group of product flavors -> https://developer.android.com/studio/build/build-variants#product-flavors
+    // each productFlavor must be belong to a flavor dimension
+    // If you are using only one dimension, this property is optional,
+    // and the plugin automatically assigns all the module's flavors to
+    // that dimension.
+
+    productFlavors {
+        create("staging") {
+            applicationIdSuffix = ".staging" // adding a suffix to app id, APKs with different appId IDs are treated as different apps -> https://developer.android.com/studio/build/application-id
+            // If using multiple google-services.json, check https://stackoverflow.com/a/64183702/11276817
+            buildConfigField(stringType, Config.BASE_URL, Config.STAGING_BASE_URL_VALUE)
+        }
+
+        create("production") {
+            buildConfigField(stringType, Config.BASE_URL, Config.LIVE_BASE_URL_VALUE)
+        }
+    }
+
     buildTypes {
 
         getByName("debug") {
-            buildConfigField(stringType, Config.BASE_URL_KEY, Config.BASE_URL_VALUE)
+            isDebuggable = true
+        }
+
+        create("qc") {
+            initWith(getByName("debug"))
             isDebuggable = true
         }
 
         getByName("release") {
-
-            buildConfigField(stringType, Config.BASE_URL_KEY, Config.BASE_URL_VALUE)
-
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -41,62 +81,80 @@ android {
         }
     }
 
+    testBuildType = "qc" // To make tests run using this specific Build Type (debug is the default)
+
     kotlinOptions {
-        // We have to add the explicit cast before accessing the options itself.
-        val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-        options.jvmTarget = "1.8"
+        this.jvmTarget = "1.8"
     }
 
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
-
-    dataBinding.isEnabled = true
 }
-
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(kotlin("stdlib-jdk7", KotlinCompilerVersion.VERSION))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30")
 
-    implementation(Libs.appcompat)
+    // Kotlin core
+    implementation(Libs.kotlin)
     implementation(Libs.appcompat)
     implementation(Libs.coreKtx)
+    implementation(Libs.reflect)
+
+    // Layout core
     implementation(Libs.constraintLayout)
     implementation(Libs.recyclerView)
-    implementation(Libs.imageLibrary)
     implementation(Libs.cardView)
-    implementation(Libs.loadingView)
     implementation(Libs.navigation)
     implementation(Libs.navigationFragment)
     implementation(Libs.paging)
 
-    //coroutines
+    // Coroutines
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)
     api(Libs.coroutinesViewModelExt)
 
-    //koin
+    // Koin
     implementation(Libs.koinAndroid)
     implementation(Libs.koinViewModel)
     implementation(Libs.koinAndroidScope)
     implementation(Libs.koinAndroidArc)
 
-    //network
+    // Network
     implementation(Libs.retrofit)
     implementation(Libs.retrofitGsonConverter)
     implementation(Libs.retrofitLoggingInterceptor)
     implementation(Libs.okhttp)
     implementation(Libs.gson)
-    implementation("androidx.room:room-runtime:2.2.5")
-    implementation(Libs.glide)
 
-    //test
-    testImplementation(TestLibs.junit)
-    testImplementation(TestLibs.mockk)
-    androidTestImplementation(TestLibs.androidExtJunit)
-    androidTestImplementation(TestLibs.androidEspresso)
-    testImplementation(TestLibs.androidArchTestCore)
-    annotationProcessor("androidx.room:room-compiler:2.2.5")
+    // Design
+    implementation(Libs.material)
+    implementation(Libs.coil)
+    implementation(Libs.loadingView)
+    implementation(Libs.scalableDp)
+    implementation(Libs.bottomSheet)
+
+    // Logging/Debugging
+    implementation(Libs.timber)
+    implementation(Libs.prettyLogger)
+    debugImplementation(Libs.leakCanary)
+
+// Tests
+    testImplementation(TestLibs.Unit.junit5)
+    testImplementation(TestLibs.Unit.junit5KotlinExt)
+    testImplementation(TestLibs.Unit.mockk)
+    testImplementation(TestLibs.Unit.androidArchTestCore)
+    androidTestImplementation(TestLibs.UI.androidEspresso)
+    androidTestImplementation(TestLibs.UI.kaspresso)
+    androidTestImplementation(TestLibs.UI.mockitoAndroid) // Using Mockito for UI tests instead of Mockk because of issue with APIs > 28 https://github.com/mockk/mockk/issues/297
+    androidTestImplementation(TestLibs.UI.testRules)
+    androidTestImplementation(TestLibs.UI.androidExtJunit)
+    implementation(TestLibs.UI.fragmentTesting) { // Using debugImplementation doesn't work in other build variants https://stackoverflow.com/questions/61472757/how-do-you-run-a-fragment-test-in-a-release-build
+        exclude(
+            "androidx.test",
+            "monitor"
+        ) // Workaround for this issue https://github.com/android/android-test/issues/731
+    }
 }

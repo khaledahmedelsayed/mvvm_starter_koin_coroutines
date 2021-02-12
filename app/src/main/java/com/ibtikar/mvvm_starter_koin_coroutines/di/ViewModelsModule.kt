@@ -1,18 +1,11 @@
 package com.ibtikar.mvvm_starter_koin_coroutines.di
 
-import com.ibtikar.mvvm_starter_koin_coroutines.ui.home.HomeViewModel
+import com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home.HomeViewModel
+import com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-/**
- * Created by Mohammed Hemdan on 7/26/20.
- * Email : mohammed.hemdan.faraj@gmail.com
- * Github : https://github.com/mhemdan
- */
-
-val viewModelModule = module {
-    viewModel {
-        HomeViewModel(get(), get())
-    }
-
+val ViewModelModule = module {
+    viewModel { BaseViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
 }

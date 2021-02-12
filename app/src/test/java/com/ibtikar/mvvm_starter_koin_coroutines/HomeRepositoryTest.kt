@@ -1,10 +1,12 @@
 package com.ibtikar.mvvm_starter_koin_coroutines
 
-import com.ibtikar.mvvm_starter_koin_coroutines.data.entities.summary.SummaryResponse
+import com.ibtikar.mvvm_starter_koin_coroutines.common.ApplicationRunTimeException
+import com.ibtikar.mvvm_starter_koin_coroutines.common.Utils
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.apis.Covid19Api
-import com.ibtikar.mvvm_starter_koin_coroutines.ui.home.HomeRepository
+import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.SummaryResponse
+import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.base.ApiBaseResponse
+import com.ibtikar.mvvm_starter_koin_coroutines.data.repositories.HomeRepository
 import com.ibtikar.mvvm_starter_koin_coroutines.utils.TestContextProvider
-import com.ibtikar.mvvm_starter_koin_coroutines.utils.Utils
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -60,7 +62,7 @@ class HomeRepositoryTest {
         runBlocking {
             //Assemble/Given
             coEvery { covid19Api.getSummary() } returns
-                    Response.success(SummaryResponse())
+                    Response.success(ApiBaseResponse(data = SummaryResponse()))
 
             //Act/Action
             val response = homeRepository.getCovid19Summary()

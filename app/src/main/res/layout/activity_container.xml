@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ContainerActivity">
+
+    <com.github.loadingview.LoadingView
+        android:id="@+id/loadingView"
+        android:background="@color/loading_view_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="@dimen/_100sdp"
+        android:visibility="gone"
+        app:lv_duration="10"
+        app:lv_internal_radius="@dimen/_4sdp"
+        app:lv_external_radius="@dimen/_16sdp"
+        app:lv_end_color="@color/colorPrimaryDark"
+        app:lv_start_color="@color/colorPrimaryDark" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true" />
+
+</FrameLayout>
+</layout>

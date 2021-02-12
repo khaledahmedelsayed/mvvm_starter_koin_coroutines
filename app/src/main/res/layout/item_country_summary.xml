@@ -7,7 +7,7 @@
 
         <variable
             name="countrySummaryNumbers"
-            type="com.ibtikar.mvvm_starter_koin_coroutines.data.entities.summary.CountryNumbersSummary" />
+            type="com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary" />
     </data>
 
     <androidx.cardview.widget.CardView

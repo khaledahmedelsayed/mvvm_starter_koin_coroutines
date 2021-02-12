@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home.ExampleBottomSheet" />
+
+        <variable
+            name="viewModel"
+            type="com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_400sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:background="@drawable/ic_launcher_foreground" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Dialog"
+            app:onSingleClick="@{() -> fragment.displayDialog()}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="bottom" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
