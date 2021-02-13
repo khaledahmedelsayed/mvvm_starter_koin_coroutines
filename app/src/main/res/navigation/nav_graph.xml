@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home.HomeFragment"
-        android:label="HomeFragment"></fragment>
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/toCountryDetails"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/homeFragment" />
+         </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.ibtikar.mvvm_starter_koin_coroutines.ui.features.details.DetailsFragment"
+        android:label="Details Fragment"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="countrySummary"
+            app:argType="com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary" />
+
+    </fragment>
 </navigation>

@@ -10,6 +10,7 @@ import androidx.annotation.IdRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.ibtikar.mvvm_starter_koin_coroutines.BR
 import com.ibtikar.mvvm_starter_koin_coroutines.R
@@ -198,8 +199,12 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
         )
     }
 
-    fun navigateTo(@IdRes resId: Int) {
+    fun navigate(@IdRes resId: Int) {
         findNavController().navigate(resId)
+    }
+
+    fun navigateWithData(navDirection: NavDirections) {
+        findNavController().navigate(navDirection)
     }
 
     fun goBack() {

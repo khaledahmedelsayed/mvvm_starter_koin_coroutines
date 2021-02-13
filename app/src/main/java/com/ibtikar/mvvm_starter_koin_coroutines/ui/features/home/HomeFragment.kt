@@ -28,7 +28,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel, HomeViewSt
     }
 
     private fun setupCountriesAdapter() {
-        binding.countriesRV.adapter = CountriesSummaryAdapter()
+        binding.countriesRV.adapter = CountriesSummaryAdapter(
+            onCountryCardClick = { countrySummary ->
+                navigateWithData(HomeFragmentDirections.toCountryDetails(countrySummary))
+            }
+        )
     }
 
     private fun setupGlobalNumbers(globalNumbersSummary: GlobalNumbersSummary?) {
@@ -36,11 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel, HomeViewSt
     }
 
     private fun setupCountriesNumbers(list: ArrayList<CountryNumbersSummary>?) {
-        val covidActiveCountriesList = arrayListOf<CountryNumbersSummary>()
-        list?.forEach {
-            if(it.newConfirmed!=0 && it.newDeaths != 0)
-                covidActiveCountriesList.add(it)
-        }
-        (binding.countriesRV.adapter as CountriesSummaryAdapter).submitList(covidActiveCountriesList)
+        list?.removeAll { it.newConfirmed == 0 && it.newDeaths == 0 } // Remove countries without reports
+        (binding.countriesRV.adapter as CountriesSummaryAdapter).submitList(list)
     }
 }

@@ -27,11 +27,3 @@ fun View.setOnSingleClickListener(
         postDelayed({ isClickable = true }, throttleDelay)
     }
 }
-
-fun ImageView.loadImage(imageUrl: String?) {
-    this.load(imageUrl) {
-        crossfade(true)
-//        placeholder(R.drawable.placeholder)
-        transformations(CircleCropTransformation())
-    }
-}

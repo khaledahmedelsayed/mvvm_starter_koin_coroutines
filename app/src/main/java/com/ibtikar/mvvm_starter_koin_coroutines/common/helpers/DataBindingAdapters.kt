@@ -6,7 +6,6 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.ibtikar.mvvm_starter_koin_coroutines.R
 import com.ibtikar.mvvm_starter_koin_coroutines.common.extensions.setOnSingleClickListener
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -27,8 +26,8 @@ object DataBindingAdapters : KoinComponent {
     }
 
     @JvmStatic
-    @BindingAdapter("imageUrl")
-    fun bindCountryFlag(imageView: ImageView, countryCode: String) {
+    @BindingAdapter("countryCodeFlag")
+    fun bindCountryFlagSmall(imageView: ImageView, countryCode: String) {
         imageView.load("https://www.countryflags.io/$countryCode/shiny/64.png") {
             crossfade(true)
             transformations(CircleCropTransformation())

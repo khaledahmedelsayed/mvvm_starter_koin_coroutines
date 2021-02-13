@@ -9,7 +9,7 @@ import com.ibtikar.mvvm_starter_koin_coroutines.databinding.ItemCountrySummaryBi
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary
 
 
-class CountriesSummaryAdapter :
+class CountriesSummaryAdapter (val onCountryCardClick : (countrySummary : CountryNumbersSummary) -> Unit):
     ListAdapter<CountryNumbersSummary, CountriesSummaryAdapter.SummaryItemHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SummaryItemHolder {
@@ -23,15 +23,18 @@ class CountriesSummaryAdapter :
     }
 
     override fun onBindViewHolder(holder: SummaryItemHolder, position: Int) {
-        holder.bindViews(getItem(position))
+        holder.bindView(getItem(position))
     }
 
     inner class SummaryItemHolder(private val binder: ItemCountrySummaryBinding) :
         RecyclerView.ViewHolder(binder.root) {
-        fun bindViews(item: CountryNumbersSummary) {
+        fun bindView(item: CountryNumbersSummary) {
             binder.countrySummaryNumbers = item
             binder.executePendingBindings()
+
+            binder.root.setOnClickListener { onCountryCardClick(item) }
         }
+
     }
 
     class DiffCallback : DiffUtil.ItemCallback<CountryNumbersSummary>() {

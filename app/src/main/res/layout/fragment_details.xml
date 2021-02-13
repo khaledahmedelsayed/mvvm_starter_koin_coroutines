@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="numberFormatter"
+            type="java.text.NumberFormat" />
+
+        <variable
+            name="countrySummaryNumbers"
+            type="com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_covid19">
+
+        <ImageView
+            android:id="@+id/countryImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:countryCodeFlag="@{countrySummaryNumbers.countryCode}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/countryNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="@{String.valueOf(countrySummaryNumbers.countryName)}"
+            android:textColor="@android:color/white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryImageView"
+            tools:text="Egypt" />
+
+        <TextView
+            android:id="@+id/newCasesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_100sdp"
+            android:text="@{`New Cases : ` + numberFormatter.getIntegerInstance().format(countrySummaryNumbers.newConfirmed)}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/newDeathsTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/countryNameTv"
+            tools:text="New Cases : 114" />
+
+        <TextView
+            android:id="@+id/newDeathsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_125sdp"
+            android:text="@{`New Deaths : ` + numberFormatter.getIntegerInstance().format(countrySummaryNumbers.newDeaths)}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/newCasesTv"
+            app:layout_constraintTop_toBottomOf="@id/countryNameTv"
+            tools:text="New Deaths : 114" />
+
+        <TextView
+            android:id="@+id/totalCasesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:text="@{`Total Cases : ` + numberFormatter.getIntegerInstance().format(countrySummaryNumbers.totalConfirmed)}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/totalDeathsTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newCasesTv"
+            tools:text="Total Cases : 114" />
+
+        <TextView
+            android:id="@+id/totalDeathsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:text="@{`Total Deaths : ` + numberFormatter.getIntegerInstance().format(countrySummaryNumbers.totalDeaths)}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/totalCasesTv"
+            app:layout_constraintTop_toBottomOf="@id/newDeathsTv"
+            tools:text="Total Deaths : 114" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

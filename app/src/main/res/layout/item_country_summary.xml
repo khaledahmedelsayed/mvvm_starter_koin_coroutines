@@ -33,7 +33,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="15dp"
-                app:imageUrl="@{countrySummaryNumbers.countryCode}"
+                app:countryCodeFlag="@{countrySummaryNumbers.countryCode}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:src="@mipmap/ic_launcher" />
