@@ -21,6 +21,7 @@ object Versions {
     const val gson = "2.8.6"
     const val okHttp = "3.9.0"
     const val cookieBar = "1.1.4"
+    const val motionToast = "1.3.3.4"
     const val glide = "4.10.0"
     const val ktLint = "9.4.1"
     const val detekt = "1.14.2"
@@ -101,6 +102,7 @@ object Libs {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val shimmerEffect = "com.facebook.shimmer:shimmer:${Versions.shimmerEffect}"
     const val cookieBar = "org.aviran.cookiebar2:cookiebar2:${Versions.cookieBar}"
+    const val motionToast = "com.github.Spikeysanju:MotionToast:${Versions.motionToast}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val loadingView = "com.samigehi:loadingview:${Versions.loadingView}"
     const val coil = "io.coil-kt:coil:${Versions.coil}"
@@ -147,8 +149,8 @@ object Config {
     //Api configs
     const val BASE_URL = "BASE_URL"
 
-    const val STAGING_BASE_URL_VALUE = "\"https://stage.baseurl.com/\""
-    const val LIVE_BASE_URL_VALUE = "\"https://live.baseurl.com/\""
+    const val STAGING_BASE_URL_VALUE = "\"https://api.covid19api.com/\""
+    const val LIVE_BASE_URL_VALUE = "\"https://api.covid19api.com/\""
 
     //Signing configs
     const val KEY_ALIAS = ""

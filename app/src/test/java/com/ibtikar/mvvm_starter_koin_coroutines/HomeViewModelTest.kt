@@ -7,7 +7,7 @@ import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.SummaryRes
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.base.ApiBaseResponse
 import com.ibtikar.mvvm_starter_koin_coroutines.data.repositories.HomeRepository
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home.HomeViewModel
-import com.ibtikar.mvvm_starter_koin_coroutines.ui.home.HomeViewState
+import com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home.HomeViewState
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseViewState
 import com.ibtikar.mvvm_starter_koin_coroutines.utils.TestContextProvider
 import io.mockk.MockKAnnotations

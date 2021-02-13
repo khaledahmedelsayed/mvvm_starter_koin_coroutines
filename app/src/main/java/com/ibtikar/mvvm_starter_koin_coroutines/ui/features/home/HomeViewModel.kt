@@ -2,7 +2,6 @@ package com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home
 
 import com.ibtikar.mvvm_starter_koin_coroutines.common.helpers.ContextProviders
 import com.ibtikar.mvvm_starter_koin_coroutines.data.repositories.HomeRepository
-import com.ibtikar.mvvm_starter_koin_coroutines.ui.home.HomeViewState
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseViewModel
 
 class HomeViewModel(

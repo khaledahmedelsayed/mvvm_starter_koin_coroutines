@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import com.ibtikar.mvvm_starter_koin_coroutines.BuildConfig
+import com.ibtikar.mvvm_starter_koin_coroutines.common.Constants.Debug.DEBUG_BUILD_TYPE
 import com.ibtikar.mvvm_starter_koin_coroutines.common.extensions.toStringOrNull
 import com.ibtikar.mvvm_starter_koin_coroutines.common.types.ErrorType
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseViewState
@@ -16,7 +17,7 @@ import timber.log.Timber
 object Utils : KoinComponent {
 
     private val context: Context by inject()
-    var isDebugBuildType = BuildConfig.BUILD_TYPE == "debug"
+    var isDebugBuildType = BuildConfig.BUILD_TYPE == DEBUG_BUILD_TYPE
 
     fun isConnectedToNetwork(): Boolean {
         val connectivityManager =

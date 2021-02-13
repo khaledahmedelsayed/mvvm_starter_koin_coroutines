@@ -5,6 +5,10 @@
 
     <data>
 
+        <import
+            alias="numberFormatter"
+            type="java.text.NumberFormat" />
+
         <variable
             name="globalSummaryNumbers"
             type="com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.GlobalNumbersSummary" />
@@ -12,8 +16,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_covid19">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,17 +28,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="36dp"
-                android:text="Confirmed :"
+                android:text="@string/confirmed"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/newCasesTv" />
 
             <TextView
+                android:id="@+id/titleTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Global Cases"
+                android:text="@string/covid_19"
+                android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,38 +48,51 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/subtitleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/global_numbers"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTV" />
+
+            <TextView
                 android:id="@+id/newCasesTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="70dp"
-                android:text="New"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/newCases"
                 android:textColor="@color/colorPrimary"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/subtitleTV" />
 
             <TextView
                 android:id="@+id/totalCasesTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="36dp"
-                android:text="Total"
+                android:text="@string/total"
                 android:textColor="@color/colorPrimary"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/subtitleTV" />
 
             <TextView
                 android:id="@+id/confirmedNewTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
-                android:text="Confirmed :"
+                android:text="@string/confirmed"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newCasesTv" />
 
@@ -82,11 +100,11 @@
                 android:id="@+id/deathsNewTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
-                android:text="Deaths :"
+                android:text="@string/deaths"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/confirmedNewTv" />
 
@@ -94,37 +112,41 @@
                 android:id="@+id/deathsNewValueTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{String.valueOf(globalSummaryNumbers.newDeaths)}"
+                android:text="@{numberFormatter.getIntegerInstance().format(globalSummaryNumbers.newDeaths)}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="13sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/deathsNewTv"
                 app:layout_constraintStart_toEndOf="@id/confirmedNewTv"
-                app:layout_constraintTop_toBottomOf="@id/newCasesTv" />
+                app:layout_constraintTop_toBottomOf="@id/newCasesTv"
+                tools:text="5000" />
 
             <TextView
                 android:id="@+id/confirmedTotalValueTv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{String.valueOf(globalSummaryNumbers.totalConfirmed)}"
+                android:text="@{numberFormatter.getIntegerInstance().format(globalSummaryNumbers.totalConfirmed)}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="13sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/confirmedTotalTv"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/confirmedTotalTv"
-                app:layout_constraintTop_toBottomOf="@id/totalCasesTv" />
+                app:layout_constraintTop_toBottomOf="@id/totalCasesTv"
+                tools:text="5000" />
 
             <TextView
                 android:id="@+id/deathsTotalValueTv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{String.valueOf(globalSummaryNumbers.totalDeaths)}"
+                android:text="@{numberFormatter.getIntegerInstance().format(globalSummaryNumbers.totalDeaths)}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="13sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/deathsTotalTv"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/deathsTotalTv"
-                app:layout_constraintTop_toBottomOf="@id/totalCasesTv" />
+                app:layout_constraintTop_toBottomOf="@id/totalCasesTv"
+                tools:text="5000" />
 
 
             <TextView
@@ -132,9 +154,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Deaths :"
+                android:text="@string/deaths"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/confirmedTotalTv" />
 
@@ -143,29 +165,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{String.valueOf(globalSummaryNumbers.newConfirmed)}"
+                android:text="@{numberFormatter.getIntegerInstance().format(globalSummaryNumbers.newConfirmed)}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="13sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/confirmedNewTv"
                 app:layout_constraintStart_toEndOf="@id/confirmedNewTv"
-                app:layout_constraintTop_toBottomOf="@id/newCasesTv" />
+                app:layout_constraintTop_toBottomOf="@id/newCasesTv"
+                tools:text="5000" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.54" />
+                app:layout_constraintGuide_percent="0.53" />
+
+            <TextView
+                android:id="@+id/subtitle2TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/countries_numbers"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deathsNewTv" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/countriesRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical"
-                android:layout_marginTop="30dp"
-                tools:listitem="@layout/item_country_summary"
-                app:layout_constraintTop_toBottomOf="@id/deathsTotalTv" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/subtitle2TV"
+                tools:listitem="@layout/item_country_summary" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

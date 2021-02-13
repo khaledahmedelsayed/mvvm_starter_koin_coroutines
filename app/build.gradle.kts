@@ -52,7 +52,7 @@ android {
     productFlavors {
         create("staging") {
             applicationIdSuffix = ".staging" // adding a suffix to app id, APKs with different appId IDs are treated as different apps -> https://developer.android.com/studio/build/application-id
-            // If using multiple google-services.json, check https://stackoverflow.com/a/64183702/11276817
+            // If using multiple google-services.json, check https://stackoverflow.com/a/64183502/11276817
             buildConfigField(stringType, Config.BASE_URL, Config.STAGING_BASE_URL_VALUE)
         }
 
@@ -135,6 +135,7 @@ dependencies {
     implementation(Libs.loadingView)
     implementation(Libs.scalableDp)
     implementation(Libs.bottomSheet)
+    implementation(Libs.motionToast)
 
     // Logging/Debugging
     implementation(Libs.timber)

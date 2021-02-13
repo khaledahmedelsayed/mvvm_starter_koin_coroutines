@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.IdRes
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,7 @@ import com.ibtikar.mvvm_starter_koin_coroutines.common.extensions.getGenericType
 import com.ibtikar.mvvm_starter_koin_coroutines.common.types.ErrorType
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.ContainerActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import www.sanju.motiontoast.MotionToast
 
 @Suppress("TooManyFunctions")
 abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : BaseViewState> :
@@ -177,11 +179,23 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
     open fun displayErrorMessage(
         message: String?
     ) {
-        // Todo
+        MotionToast.createColorToast(
+            requireActivity(), "Error", message ?: "",
+            MotionToast.TOAST_ERROR,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(requireContext(), R.font.helvetica_regular)
+        )
     }
 
     open fun displaySucceedMessage(message: String?, durationInMs: Long) {
-        // Todo
+        MotionToast.createColorToast(
+            requireActivity(), "Success!", message ?: "",
+            MotionToast.TOAST_SUCCESS,
+            MotionToast.GRAVITY_BOTTOM,
+            durationInMs,
+            ResourcesCompat.getFont(requireContext(), R.font.helvetica_regular)
+        )
     }
 
     fun navigateTo(@IdRes resId: Int) {
