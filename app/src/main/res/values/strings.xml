@@ -9,4 +9,7 @@
     <string name="confirmed">Confirmed :</string>
     <string name="deaths">Deaths :</string>
     <string name="countries_numbers">Countries numbers</string>
+    <string name="send_report">Send report</string>
+    <string name="report_sent">Report sent !</string>
+    <string name="dismiss">Dismiss</string>
 </resources>

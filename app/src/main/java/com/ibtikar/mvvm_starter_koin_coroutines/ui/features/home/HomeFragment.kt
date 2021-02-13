@@ -1,5 +1,6 @@
 package com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home
 
+import android.view.View
 import com.ibtikar.mvvm_starter_koin_coroutines.common.Constants.SUCCESS_TOAST_DELAY
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.GlobalNumbersSummary
@@ -8,6 +9,11 @@ import com.ibtikar.mvvm_starter_koin_coroutines.databinding.FragmentHomeBinding
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel, HomeViewState>() {
+
+    override fun setupScreenDecorations() {
+        super.setupScreenDecorations()
+        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
 
     override fun setup() {
         setupCountriesAdapter()

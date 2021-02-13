@@ -1,4 +1,4 @@
-package com.ibtikar.mvvm_starter_koin_coroutines.ui.features.home
+package com.ibtikar.mvvm_starter_koin_coroutines.ui.features.details
 
 import com.ibtikar.mvvm_starter_koin_coroutines.common.Constants.CORNER_RADIUS
 import com.ibtikar.mvvm_starter_koin_coroutines.common.Constants.PEEK_HEIGHT

@@ -23,4 +23,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, DetailsViewModel, D
 
         }
     }
+
+    fun displayBottomSheet() {
+        openFragment(ExampleBottomSheet())
+    }
 }
