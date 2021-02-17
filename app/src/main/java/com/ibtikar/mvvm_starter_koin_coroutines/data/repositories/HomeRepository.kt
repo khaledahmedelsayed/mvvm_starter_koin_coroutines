@@ -2,7 +2,6 @@ package com.ibtikar.mvvm_starter_koin_coroutines.data.repositories
 
 import com.ibtikar.mvvm_starter_koin_coroutines.common.helpers.ContextProviders
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.apis.Covid19Api
-import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.SummaryResponse
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.base.ApiBaseResponse
 
 class HomeRepository(private val covid19Api: Covid19Api, contextProviders: ContextProviders) :
@@ -12,4 +11,3 @@ class HomeRepository(private val covid19Api: Covid19Api, contextProviders: Conte
     suspend fun getCovid19Summary() =
         ApiBaseResponse(data = executeNetworkCall { covid19Api.getSummary() })
 }
-

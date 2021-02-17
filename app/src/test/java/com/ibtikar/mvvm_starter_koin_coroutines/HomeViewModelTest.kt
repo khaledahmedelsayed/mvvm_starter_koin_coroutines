@@ -1,6 +1,5 @@
 package com.ibtikar.mvvm_starter_koin_coroutines
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.asala.loyalty.utils.InstantExecutorExtension
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.GlobalNumbersSummary
@@ -38,13 +37,13 @@ class HomeViewModelTest {
 
     @Test
     fun `when invoking loadCovid19Summary() with data being loaded successfully then change view state to LOADED`() {
-        //Assemble/Given
+        // Assemble/Given
         coEvery { homeRepository.getCovid19Summary() } returns ApiBaseResponse(data = SummaryResponse(dummyNumbersSummary))
 
-        //Act/Action
+        // Act/Action
         unitUnderTest.loadCovid19Summary()
 
-        //Assert/Verify
+        // Assert/Verify
         coVerifyOrder {
             stateObserver.onChanged(BaseViewState.Loading())
             stateObserver.onChanged(
@@ -56,5 +55,4 @@ class HomeViewModelTest {
             )
         }
     }
-
 }

@@ -22,7 +22,6 @@ import retrofit2.Response
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-
 @ExtendWith(InstantExecutorExtension::class, KoinTestExtension::class)
 class HomeRepositoryTest {
     private lateinit var unitUnderTest: HomeRepository
@@ -41,16 +40,16 @@ class HomeRepositoryTest {
     @Test
     fun `when invoking getCovid19Summary() with error response then ApplicationRunTimeException is thrown`() {
         runBlocking {
-            //Assemble/Given
+            // Assemble/Given
             coEvery { covid19Api.getSummary() } returns
-                    Response.error(
-                        Random.nextInt(300..400),
-                        ResponseBody.create(MediaType.get("application/json"), "")
-                    )
+                Response.error(
+                    Random.nextInt(300..400),
+                    ResponseBody.create(MediaType.get("application/json"), "")
+                )
 
-            //Act/Action
+            // Act/Action
 
-            //Assert/Verify
+            // Assert/Verify
             assertThrows(ApplicationRunTimeException::class.java) {
                 runBlocking { unitUnderTest.getCovid19Summary() }
             }
@@ -62,14 +61,14 @@ class HomeRepositoryTest {
         runBlocking {
             unitUnderTest = HomeRepository(covid19Api, TestContextProvider())
 
-            //Assemble/Given
+            // Assemble/Given
             coEvery { covid19Api.getSummary() } returns
-                    Response.success(SummaryResponse())
+                Response.success(SummaryResponse())
 
-            //Act/Action
+            // Act/Action
             val response = unitUnderTest.getCovid19Summary()
 
-            //Assert/Verify
+            // Assert/Verify
             assertEquals(response, summaryResponse)
         }
     }

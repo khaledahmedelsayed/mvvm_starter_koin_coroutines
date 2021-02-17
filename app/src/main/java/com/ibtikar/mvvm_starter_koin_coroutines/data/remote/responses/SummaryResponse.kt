@@ -10,4 +10,4 @@ import kotlinx.parcelize.Parcelize
 data class SummaryResponse(
     @SerializedName("Global") val globalNumbersSummary: GlobalNumbersSummary? = null,
     @SerializedName("Countries") val countriesNumbersSummary: ArrayList<CountryNumbersSummary>? = null
-): Parcelable
+) : Parcelable

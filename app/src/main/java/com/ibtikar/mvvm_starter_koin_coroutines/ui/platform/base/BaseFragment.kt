@@ -181,7 +181,9 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
         message: String?
     ) {
         MotionToast.createColorToast(
-            requireActivity(), "Error", message ?: "",
+            requireActivity(),
+            "Error",
+            message ?: "",
             MotionToast.TOAST_ERROR,
             MotionToast.GRAVITY_BOTTOM,
             MotionToast.LONG_DURATION,
@@ -191,7 +193,9 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
 
     open fun displaySucceedMessage(message: String?, durationInMs: Long) {
         MotionToast.createColorToast(
-            requireActivity(), "Success!", message ?: "",
+            requireActivity(),
+            "Success!",
+            message ?: "",
             MotionToast.TOAST_SUCCESS,
             MotionToast.GRAVITY_BOTTOM,
             durationInMs,

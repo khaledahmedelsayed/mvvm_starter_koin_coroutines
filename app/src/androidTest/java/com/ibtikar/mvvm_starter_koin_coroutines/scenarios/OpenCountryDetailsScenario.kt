@@ -9,10 +9,10 @@ class OpenCountryDetailsScenario() : Scenario() {
     private val homeScreen = HomeScreen()
 
     override val steps: TestContext<Unit>.() -> Unit = {
-            flakySafely (MAX_TIME_OUT) {
-                step("Click on the first country card") {
-                    homeScreen.countriesRecyclerView.firstChild<HomeScreen.CountrySummaryItem> { click() }
-                }
+        flakySafely(MAX_TIME_OUT) {
+            step("Click on the first country card") {
+                homeScreen.countriesRecyclerView.firstChild<HomeScreen.CountrySummaryItem> { click() }
             }
+        }
     }
 }

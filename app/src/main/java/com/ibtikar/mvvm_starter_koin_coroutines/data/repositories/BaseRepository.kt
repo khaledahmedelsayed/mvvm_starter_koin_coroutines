@@ -21,7 +21,7 @@ open class BaseRepository(
     private val contextProviders: ContextProviders,
     private val sharedPrefs: SharedPreferencesUtils? = null,
 
-    ) : KoinComponent {
+) : KoinComponent {
     private val gson: Gson by inject()
 
     // https://arturbosch.github.io/detekt/exceptions.html#toogenericexceptioncaught

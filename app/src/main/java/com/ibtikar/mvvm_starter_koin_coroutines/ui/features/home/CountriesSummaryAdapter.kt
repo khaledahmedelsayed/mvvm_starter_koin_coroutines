@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ibtikar.mvvm_starter_koin_coroutines.databinding.ItemCountrySummaryBinding
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary
+import com.ibtikar.mvvm_starter_koin_coroutines.databinding.ItemCountrySummaryBinding
 
-
-class CountriesSummaryAdapter (val onCountryCardClick : (countrySummary : CountryNumbersSummary) -> Unit):
+class CountriesSummaryAdapter(val onCountryCardClick: (countrySummary: CountryNumbersSummary) -> Unit) :
     ListAdapter<CountryNumbersSummary, CountriesSummaryAdapter.SummaryItemHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SummaryItemHolder {
@@ -34,7 +33,6 @@ class CountriesSummaryAdapter (val onCountryCardClick : (countrySummary : Countr
 
             binder.root.setOnClickListener { onCountryCardClick(item) }
         }
-
     }
 
     class DiffCallback : DiffUtil.ItemCallback<CountryNumbersSummary>() {

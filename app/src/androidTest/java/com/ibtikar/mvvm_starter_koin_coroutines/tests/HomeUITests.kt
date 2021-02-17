@@ -95,5 +95,4 @@ class HomeUITests : TestCase(), KoinComponent {
                 screen.countryDetailsScreen.isDisplayed()
             }
         }
-
 }

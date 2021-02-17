@@ -12,4 +12,4 @@ data class GlobalNumbersSummary(
     @SerializedName("TotalConfirmed") val totalConfirmed: Int = 0,
     @SerializedName("TotalDeaths") val totalDeaths: Int = 0,
     @SerializedName("TotalRecovered") val totalRecovered: Int = 0
-): Parcelable
+) : Parcelable

@@ -1,9 +1,6 @@
 package com.ibtikar.mvvm_starter_koin_coroutines.common.extensions
 
 import android.view.View
-import android.widget.ImageView
-import coil.load
-import coil.transform.CircleCropTransformation
 
 fun View.gone() {
     visibility = View.GONE

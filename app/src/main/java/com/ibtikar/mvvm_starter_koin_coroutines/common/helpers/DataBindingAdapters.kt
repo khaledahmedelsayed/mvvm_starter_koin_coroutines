@@ -33,5 +33,4 @@ object DataBindingAdapters : KoinComponent {
             transformations(CircleCropTransformation())
         }
     }
-
 }

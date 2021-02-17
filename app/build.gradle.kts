@@ -149,7 +149,7 @@ dependencies {
     testImplementation(TestLibs.Unit.androidArchTestCore)
     androidTestImplementation(TestLibs.UI.androidEspresso)
     androidTestImplementation(TestLibs.UI.kaspresso)
-    androidTestImplementation (TestLibs.UI.navigationTesting)
+    androidTestImplementation(TestLibs.UI.navigationTesting)
     androidTestImplementation(TestLibs.UI.testRules)
     androidTestImplementation(TestLibs.UI.androidExtJunit)
     implementation(TestLibs.UI.fragmentTesting) { // Using debugImplementation doesn't work in other build variants https://stackoverflow.com/questions/61472757/how-do-you-run-a-fragment-test-in-a-release-build

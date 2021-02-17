@@ -4,7 +4,6 @@ import android.view.View
 import com.ibtikar.mvvm_starter_koin_coroutines.common.Constants.SUCCESS_TOAST_DELAY
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.CountryNumbersSummary
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.entities.GlobalNumbersSummary
-
 import com.ibtikar.mvvm_starter_koin_coroutines.databinding.FragmentHomeBinding
 import com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseFragment
 

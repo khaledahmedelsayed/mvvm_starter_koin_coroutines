@@ -7,9 +7,9 @@ import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 class OpenBottomSheetScenario() : Scenario() {
     private val detailsScreen = DetailsScreen()
     override val steps: TestContext<Unit>.() -> Unit = {
-            scenario(OpenCountryDetailsScenario())
-            step("Click on send button in bottom sheet") {
-                detailsScreen.sendButton.click()
-            }
+        scenario(OpenCountryDetailsScenario())
+        step("Click on send button in bottom sheet") {
+            detailsScreen.sendButton.click()
+        }
     }
 }

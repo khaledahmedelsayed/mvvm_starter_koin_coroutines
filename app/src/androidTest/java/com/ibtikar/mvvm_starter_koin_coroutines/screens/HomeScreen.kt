@@ -19,15 +19,14 @@ class HomeScreen : Screen<HomeScreen>() {
 
     val countriesRecyclerView = KRecyclerView(
         builder = { withId(R.id.countriesRV) },
-        itemTypeBuilder = { itemType(::CountrySummaryItem) })
+        itemTypeBuilder = { itemType(::CountrySummaryItem) }
+    )
 
     class CountrySummaryItem(parent: Matcher<View>) : KRecyclerItem<SummaryResponse>(parent) {
         val countryFlag = KImageView(parent) { withId(R.id.countryImageView) }
         val countryCases = KTextView(parent) { withId(R.id.countryCasesTV) }
-        val countryDeaths = KTextView(parent){withId(R.id.countryDeathsTV)}
+        val countryDeaths = KTextView(parent) { withId(R.id.countryDeathsTV) }
     }
 
     val countryDetailsScreen = KView { withId(R.id.detailsLayout) }
-
-
 }

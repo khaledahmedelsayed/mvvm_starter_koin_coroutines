@@ -13,7 +13,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, DetailsViewModel, D
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(args) {
             binding.countrySummaryNumbers = countrySummary
-
         }
         super.onViewCreated(view, savedInstanceState)
     }
