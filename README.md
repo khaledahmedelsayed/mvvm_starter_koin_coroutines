@@ -9,6 +9,8 @@ MVVM Starter with states using Coroutines, Koin, Nav component, Paging2, Junit5,
 3. Dependency injection using [Koin](https://insert-koin.io/)
 4. Async./Threading using [Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 5. Remote API calls using [Retrofit2](https://github.com/square/retrofit)
+6. Unit tests using [Junit5](https://www.baeldung.com/junit-5-kotlin), [Mockk](https://mockk.io/)
+7. UI (Android) tests  using [Kaspresso](https://github.com/KasperskyLab/Kaspresso)(wrapper over [Kakao using Espresso](https://github.com/agoda-com/Kakao)) 
 
 ## Architecture
 
@@ -62,3 +64,25 @@ Why use `ViewStates` ?
         * `ViewModel`'s `internalState`,
     
         then use this `DataSourceFactory` in a `BasePagingViewModel`
+        
+## How to add unit test ?
+  1. Go to ViewModel to be tested, Press `CTRL+Shift+T` to create a new test class for that ViewModel, choose `test` package (not androidTest)
+  2. Add `@ExtendWith(InstantExecutorExtension::class, KoinTestExtension::class)` to be able to use liveData and Koin
+  3. Intialize Mocks
+  4. Intialize UnitUnderTest(i.e ViewModel), make it observe on `BaseViewState`
+  5. Add tests using `@Test` or `@ParameterizedTest`
+
+## How to add UI (Android) test ?
+  1. Kakao uses *Page Object Pattern*, So we add screen views to be tested in `screens` (if needed)
+     * `ScreenClass` extends `Screen<ScreenClass>`
+     * Add views using `KTextView{ }`, `KImageView{ }`, etc.. and include matchers inside them
+  2. Add TestClass in `tests` that extends `TestCase()`, `KoinComponent`( to use Koin if needed)
+     * Add test using `@Test` and using :-
+    
+                before{ }.after{ }.run{ step("Test Example"){ } }
+     
+     Note:- `before{}.after{}` can be ommited.
+     
+  3. For common scenarios in multiple tests add a new `Scenario` in `scenarios` that extends `Scenario()` and include in it common steps, asserts.
+     * Use them in `TestsCase()` by using `scenario(SomeScenario())`
+        
