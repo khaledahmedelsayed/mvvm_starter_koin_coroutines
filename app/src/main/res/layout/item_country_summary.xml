@@ -54,7 +54,7 @@
 
 
             <TextView
-                android:id="@+id/newDeathsTv"
+                android:id="@+id/countryDeathsTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -65,7 +65,7 @@
 
 
             <TextView
-                android:id="@+id/newCasesTv"
+                android:id="@+id/countryCasesTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"

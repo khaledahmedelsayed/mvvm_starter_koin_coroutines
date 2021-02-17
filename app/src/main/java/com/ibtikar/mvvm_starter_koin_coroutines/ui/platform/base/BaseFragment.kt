@@ -168,12 +168,12 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
     }
 
     private fun displayLoading() {
-        (requireActivity() as ContainerActivity).binding.loadingView.start()
+        (requireActivity() as? ContainerActivity)?.binding?.loadingView?.start()
         // Todo
     }
 
     private fun hideLoading() {
-        (requireActivity() as ContainerActivity).binding.loadingView.stop()
+        (requireActivity() as? ContainerActivity)?.binding?.loadingView?.stop()
         // Todo
     }
 
@@ -216,7 +216,8 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel, VS : Base
     }
 
     fun closeFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().remove(fragment).commit()
+        // To avoid java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState
+        parentFragmentManager.beginTransaction().remove(fragment).commitAllowingStateLoss()
     }
 
     // Reflect helper methods to avoid boilerplate in each child fragment

@@ -95,7 +95,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
 
     // Kotlin core
     implementation(Libs.kotlin)
@@ -149,7 +149,7 @@ dependencies {
     testImplementation(TestLibs.Unit.androidArchTestCore)
     androidTestImplementation(TestLibs.UI.androidEspresso)
     androidTestImplementation(TestLibs.UI.kaspresso)
-    androidTestImplementation(TestLibs.UI.mockitoAndroid) // Using Mockito for UI tests instead of Mockk because of issue with APIs > 28 https://github.com/mockk/mockk/issues/297
+    androidTestImplementation (TestLibs.UI.navigationTesting)
     androidTestImplementation(TestLibs.UI.testRules)
     androidTestImplementation(TestLibs.UI.androidExtJunit)
     implementation(TestLibs.UI.fragmentTesting) { // Using debugImplementation doesn't work in other build variants https://stackoverflow.com/questions/61472757/how-do-you-run-a-fragment-test-in-a-release-build

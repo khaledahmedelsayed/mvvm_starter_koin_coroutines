@@ -18,11 +18,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, DetailsViewModel, D
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun render(screenViewState: DetailsViewState) {
-        when (screenViewState) {
-
-        }
-    }
+    override fun render(screenViewState: DetailsViewState) { }
 
     fun displayBottomSheet() {
         openFragment(ExampleBottomSheet())

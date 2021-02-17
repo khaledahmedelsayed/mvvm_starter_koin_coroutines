@@ -1,48 +1,44 @@
 package com.ibtikar.mvvm_starter_koin_coroutines
 
+import com.asala.loyalty.utils.InstantExecutorExtension
 import com.ibtikar.mvvm_starter_koin_coroutines.common.ApplicationRunTimeException
-import com.ibtikar.mvvm_starter_koin_coroutines.common.Utils
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.apis.Covid19Api
 import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.SummaryResponse
-import com.ibtikar.mvvm_starter_koin_coroutines.data.remote.responses.base.ApiBaseResponse
 import com.ibtikar.mvvm_starter_koin_coroutines.data.repositories.HomeRepository
+import com.ibtikar.mvvm_starter_koin_coroutines.utils.KoinTestExtension
 import com.ibtikar.mvvm_starter_koin_coroutines.utils.TestContextProvider
-import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.impl.annotations.MockK
-import junit.framework.Assert.assertEquals
+import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.extension.ExtendWith
 import retrofit2.Response
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-@RunWith(MockitoJUnitRunner::class)
+
+@ExtendWith(InstantExecutorExtension::class, KoinTestExtension::class)
 class HomeRepositoryTest {
+    private lateinit var unitUnderTest: HomeRepository
 
-    @MockK
-    lateinit var covid19Api: Covid19Api
-
-    @MockK
-    lateinit var summaryResponse: SummaryResponse
-
-    lateinit var homeRepository: HomeRepository
+    // Mocks
+    private val summaryResponse = mockk<SummaryResponse>()
+    private val covid19Api = mockk<Covid19Api>()
 
     private val contextProvidersTest = TestContextProvider()
 
-    @Before
-    fun setUp() {
-        MockKAnnotations.init(this, relaxUnitFun = true)
-        homeRepository = HomeRepository(covid19Api, contextProvidersTest)
-        coEvery { Utils.isConnectedToNetwork() } returns true
+    @BeforeEach
+    internal fun setUp() {
+        unitUnderTest = HomeRepository(covid19Api, contextProvidersTest)
     }
 
-    @Test(expected = ApplicationRunTimeException::class)  //Assert/Verify
+    @Test
     fun `when invoking getCovid19Summary() with error response then ApplicationRunTimeException is thrown`() {
         runBlocking {
             //Assemble/Given
@@ -53,19 +49,25 @@ class HomeRepositoryTest {
                     )
 
             //Act/Action
-            homeRepository.getCovid19Summary()
+
+            //Assert/Verify
+            assertThrows(ApplicationRunTimeException::class.java) {
+                runBlocking { unitUnderTest.getCovid19Summary() }
+            }
         }
     }
 
     @Test
     fun `when invoking getCovid19Summary() with success response then return SummaryResponse()`() {
         runBlocking {
+            unitUnderTest = HomeRepository(covid19Api, TestContextProvider())
+
             //Assemble/Given
             coEvery { covid19Api.getSummary() } returns
-                    Response.success(ApiBaseResponse(data = SummaryResponse()))
+                    Response.success(SummaryResponse())
 
             //Act/Action
-            val response = homeRepository.getCovid19Summary()
+            val response = unitUnderTest.getCovid19Summary()
 
             //Assert/Verify
             assertEquals(response, summaryResponse)

@@ -12,11 +12,12 @@
             type="com.ibtikar.mvvm_starter_koin_coroutines.ui.platform.base.BaseViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheetLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_400sdp">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/sendReportButton"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="@dimen/_40sdp"
             android:layout_height="wrap_content"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/dismiss"
             app:onSingleClick="@{() -> fragment.dismiss()}"
-            app:layout_constraintTop_toBottomOf="@id/button1"
+            app:layout_constraintTop_toBottomOf="@id/sendReportButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/_50sdp"/>

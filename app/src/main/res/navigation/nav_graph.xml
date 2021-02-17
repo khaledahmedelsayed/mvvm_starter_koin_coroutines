@@ -12,7 +12,9 @@
         <action
             android:id="@+id/toCountryDetails"
             app:destination="@id/detailsFragment"
-            app:popUpTo="@id/homeFragment" />
+            app:popUpTo="@id/homeFragment"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
          </fragment>
     <fragment
         android:id="@+id/detailsFragment"

@@ -11,7 +11,7 @@ object Versions {
     const val appcompat = "1.1.0"
     const val coreKtx = "1.2.0"
     const val constraintLayout = "2.0.2"
-    const val navigation = "2.2.2"
+    const val navigation = "2.3.3"
     const val coroutines = "1.3.7"
     const val room = "2.2.4"
     const val koin = "2.0.1"
@@ -50,6 +50,7 @@ object Versions {
     const val testRules = "1.1.0"
     const val mockitoAndroid = "3.7.0"
     const val fragmentTesting = "1.2.5"
+    const val navigationTesting = "2.3.1"
 }
 
 object Libs {
@@ -135,13 +136,14 @@ object TestLibs {
     }
 
     object UI {
+        const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroid}"
         const val androidEspresso =
             "androidx.test.espresso:espresso-core:${Versions.androidEspresso}"
-        const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroid}"
         const val kaspresso = "com.kaspersky.android-components:kaspresso:${Versions.kaspresso}"
         const val testRules = "androidx.test:rules:${Versions.testRules}"
         const val androidExtJunit = "androidx.test.ext:junit:${Versions.androidExtJunit}"
         const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+        const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigationTesting}"
     }
 }
 

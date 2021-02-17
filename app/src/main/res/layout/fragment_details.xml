@@ -19,12 +19,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_covid19">
 
         <ImageView
-            android:id="@+id/countryImageView"
+            android:id="@+id/countryDetailsFlag"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="@dimen/_20sdp"
@@ -46,24 +47,24 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/countryImageView"
+            app:layout_constraintTop_toBottomOf="@+id/countryDetailsFlag"
             tools:text="Egypt" />
 
         <TextView
-            android:id="@+id/newCasesTv"
+            android:id="@+id/countryCasesTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_100sdp"
             android:text="@{`New Cases : ` + numberFormatter.getIntegerInstance().format(countrySummaryNumbers.newConfirmed)}"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/newDeathsTv"
+            app:layout_constraintEnd_toStartOf="@+id/countryDeathsTV"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/countryNameTv"
             tools:text="New Cases : 114" />
 
         <TextView
-            android:id="@+id/newDeathsTv"
+            android:id="@+id/countryDeathsTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_125sdp"
@@ -71,7 +72,7 @@
             android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/newCasesTv"
+            app:layout_constraintStart_toEndOf="@+id/countryCasesTV"
             app:layout_constraintTop_toBottomOf="@id/countryNameTv"
             tools:text="New Deaths : 114" />
 
@@ -85,7 +86,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/totalDeathsTv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newCasesTv"
+            app:layout_constraintTop_toBottomOf="@id/countryCasesTV"
             tools:text="Total Cases : 114" />
 
         <TextView
@@ -98,13 +99,14 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/totalCasesTv"
-            app:layout_constraintTop_toBottomOf="@id/newDeathsTv"
+            app:layout_constraintTop_toBottomOf="@id/countryDeathsTV"
             tools:text="Total Deaths : 114" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"
+            android:text="@string/send"
             app:backgroundTint="@color/custom_warning_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
