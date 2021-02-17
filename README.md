@@ -1,6 +1,6 @@
 # MVVM_State_Starter
 
-MVVM Starter with states using Coroutines, Koin, Nav component, Paging2, Junit5, Github workflows.
+MVVM Starter with states using Coroutines, Koin, Nav component, Paging2, Junit5,Kaspresso, Github workflows.
 
 ## Structure characteristics and technologies used :-
 
