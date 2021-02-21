@@ -86,3 +86,11 @@ Why use `ViewStates` ?
   3. For common scenarios in multiple tests add a new `Scenario` in `scenarios` that extends `Scenario()` and include in it common steps, asserts.
      * Use them in `TestsCase()` by using `scenario(SomeScenario())`
         
+## How to use current Github actions workflows added ?
+  There are 2 workflows, they run automatically on push and PR (can be changed in their YAML file)
+  1. `Linting.yaml` 
+      * Runs `./gradlew ktlintFormat` and push changes to the current branch
+      * Runs `./gradlew detekt`
+  3. `Deployment.yaml` -> Builds specified variants and uploades them to google drive 
+      * Environmental variable `GOOGLE_DRIVE_DIR` needs to be specified to upload to that directory
+      * Add secret in your repository with key `RCLONE_CONF` and value with your `rclone.conf` file content , to generate `rclone.conf` check https://github.com/rclone/rclone and https://rclone.org/drive/
