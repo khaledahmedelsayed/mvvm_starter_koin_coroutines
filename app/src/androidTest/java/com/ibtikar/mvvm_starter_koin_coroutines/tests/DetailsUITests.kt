@@ -33,7 +33,7 @@ class DetailsUITests : TestCase(), KoinComponent {
         }
 
     @Test
-    fun on_Clicking_Send_Button_Opens_Bottom_Sheet_In_The_Same_Screen() =
+    fun on_Clicking_Send_Button_Should_Open_Bottom_Sheet() =
         run {
             scenario(OpenBottomSheetScenario())
             step("Check that bottom sheet is displayed") {
@@ -42,7 +42,7 @@ class DetailsUITests : TestCase(), KoinComponent {
         }
 
     @Test
-    fun on_Clicking_Send_Report_Button_In_Bottom_Sheet_Opens_Dialog() =
+    fun on_Clicking_Send_Report_Button_In_Bottom_Sheet_Should_Open_Dialog() =
         run {
             scenario(OpenBottomSheetScenario())
             step("Click on send report button in bottom sheet") {

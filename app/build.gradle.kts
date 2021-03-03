@@ -138,8 +138,8 @@ dependencies {
     implementation(Libs.motionToast)
 
     // Logging/Debugging
-    implementation(Libs.timber)
     implementation(Libs.prettyLogger)
+    implementation(Libs.timber)
     debugImplementation(Libs.leakCanary)
 
 // Tests

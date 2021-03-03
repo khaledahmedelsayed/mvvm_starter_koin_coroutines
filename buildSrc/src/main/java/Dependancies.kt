@@ -119,8 +119,8 @@ object Libs {
     const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
 
     //Logging/Debug
-    const val timber = "com.orhanobut:${Versions.prettyLogger}"
-    const val prettyLogger = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val prettyLogger = "com.orhanobut:${Versions.prettyLogger}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 }
 

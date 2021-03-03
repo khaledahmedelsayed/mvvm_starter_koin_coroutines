@@ -26,7 +26,7 @@ class HomeUITests : TestCase(), KoinComponent {
     private val screen = HomeScreen()
 
     @Test
-    fun new_And_Total_Actual_Numbers_Should_Be_Displayed() =
+    fun new_And_Total_Cases_And_Deaths_Actual_Numbers_Should_Be_Displayed() =
         run {
             screen {
                 flakySafely(timeoutMs = MAX_TIME_OUT) {
@@ -41,7 +41,7 @@ class HomeUITests : TestCase(), KoinComponent {
         }
 
     @Test
-    fun recycler_View_Should_Be_Populated_With_Items() =
+    fun country_List_Should_Be_Populated_With_Items() =
         run {
             step("Check that recycler view has items") {
                 flakySafely(timeoutMs = MAX_TIME_OUT) {
@@ -51,7 +51,7 @@ class HomeUITests : TestCase(), KoinComponent {
         }
 
     @Test
-    fun recycler_View_Country_Item_Should_Be_Displayed_Properly() =
+    fun country_List_Item_Should_Be_Displayed_Properly() =
         run {
             step("Check that the first item is displayed properly") {
                 screen.countriesRecyclerView {
