@@ -99,7 +99,7 @@ object Libs {
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
 
-    //Design
+    // Design
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val shimmerEffect = "com.facebook.shimmer:shimmer:${Versions.shimmerEffect}"
     const val cookieBar = "org.aviran.cookiebar2:cookiebar2:${Versions.cookieBar}"
@@ -118,7 +118,7 @@ object Libs {
     const val dynamicLinks = "com.google.firebase:firebase-dynamic-links-ktx"
     const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
 
-    //Logging/Debug
+    // Logging/Debug
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val prettyLogger = "com.orhanobut:${Versions.prettyLogger}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"

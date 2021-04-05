@@ -18,9 +18,9 @@ open class BaseViewModel(private val contextProvider: ContextProviders) :
 
     private val baseRepository: BaseRepository by inject()
 
-    internal val internalState = MutableLiveData<BaseViewState>()
+    protected val internalState = MutableLiveData<BaseViewState>()
 
-    val baseViewState: LiveData<BaseViewState> = internalState
+    internal val baseViewState: LiveData<BaseViewState> = internalState
 
     fun launchSuspendingBlock(
         displayLoader: Boolean = true,

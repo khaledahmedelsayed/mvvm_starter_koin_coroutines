@@ -50,7 +50,7 @@ open class BaseRepository(
                     )
                     else -> ApplicationRunTimeException(
                         ErrorType.UnexpectedErrorType,
-                        exception.message
+                        errorsContent = hashMapOf(Pair("", exception.message.toString()))
                     )
                 }
             }
